@@ -1,26 +1,21 @@
 package app.exercise.adt;
 
+import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class BSTree extends java.util.AbstractCollection<E> implements Iterable<E> {
-    private E[] data;
-    private int size;
+public class BSTree<E> extends AbstractCollection<E> implements Iterable<E> {
 
-    public BSTree(int maxSize){
-        data = (E[]) new Object[maxSize];
-        size = 0;
+    private Node<E> root;
+
+    public BSTree(Node<E> root) {
+        this.root=root;
     }
 
     @Override
     public boolean add(E element) {
-        if (size >= data.length) {
-            throw new ArrayIndexOutOfBoundsException ();
-            return false;
-        }
-        data[size++] = element;
         return true;
-        }
+    }
 
     @Override
     public Iterator iterator() {
@@ -57,9 +52,7 @@ public class BSTree extends java.util.AbstractCollection<E> implements Iterable<
         return super.toString();
     }
 
-    public Iterator<E> iterator(){
-        return null;
+    public Node<E> getRoot() {
+        return root;
     }
-
-    public elementAt
 }

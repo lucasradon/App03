@@ -3,7 +3,7 @@ package app.exercise.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BSTreeIterator implements Iterator<E> {
+public class BSTreeIterator<E> implements Iterator<E> {
     private BSTree<E> list;
     private int pos = 0;
 
@@ -19,11 +19,12 @@ public class BSTreeIterator implements Iterator<E> {
 
     @Override
     public E next() {
-        if (pos>= list.size()){
+        if (pos>= list.size()) {
             throw new NoSuchElementException();
         }
-        return list.ele
+        return null;
     }
+
 
 
 }

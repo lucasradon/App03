@@ -1,6 +1,6 @@
 package app.exercise.algebra;
 
-public class CompRational extends Rational implements java.lang.Comparable<T>{
+public class CompRational<T> extends Rational implements Comparable<T>{
 
     /**
      * Konstrukor zum erzeugen eines CompRational-Objektes
@@ -18,7 +18,7 @@ public class CompRational extends Rational implements java.lang.Comparable<T>{
     @Override
     public int compareTo(T o)
     {
-        CompRational tmp = <T> o;
+        CompRational tmp = (CompRational) o;
         if(this.equals(tmp))
         {
             return 0;
@@ -31,5 +31,10 @@ public class CompRational extends Rational implements java.lang.Comparable<T>{
         {
             return -1;
         }
+    }
+
+    @Override
+    public String toString() {
+        return Long.toString(getN())+"/"+Long.toString(getD());
     }
 }
