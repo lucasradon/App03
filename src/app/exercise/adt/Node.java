@@ -6,10 +6,11 @@ public class Node<T> implements DrawableTreeElement<T> {
 
     private T t;
     private boolean red;
-    private Node<T> right,left;
+    private Node<T> right, left, parent;
 
-    public Node(T t){
+    public Node(T t, Node<T> parent){
         this.t = t;
+        this.parent = parent;
         this.red = Math.random() < 0.5;
     }
 
@@ -33,12 +34,27 @@ public class Node<T> implements DrawableTreeElement<T> {
         return t;
     }
 
-    public void setRight(Node<T> right) {
+    public Node<T> getLeftNode() {
+        return left;
+    }
+
+    public Node<T> getRightNode() {
+        return right;
+    }
+
+    public void setRightNode(Node<T> right) {
         this.right = right;
     }
 
-    public void setLeft(Node<T> left) {
+    public void setLeftNode(Node<T> left) {
         this.left = left;
     }
 
+    public Node<T> getParent() {
+        return parent;
+    }
+
+    public void setParent(Node<T> parent) {
+        this.parent = parent;
+    }
 }

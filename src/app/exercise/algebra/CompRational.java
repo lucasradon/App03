@@ -1,6 +1,6 @@
 package app.exercise.algebra;
 
-public class CompRational<T> extends Rational implements Comparable<T>{
+public class CompRational extends Rational implements Comparable<CompRational>{
 
     /**
      * Konstrukor zum erzeugen eines CompRational-Objektes
@@ -12,25 +12,17 @@ public class CompRational<T> extends Rational implements Comparable<T>{
     /**
      * Methode zum überprüfen ob 2 CompRational-Objekte die gleichen Werte haben
      * Wenn größer 1, kleiner -1, gleich 0
-     * @param o Object
+     * @param tmp Object
      * @return int
      */
     @Override
-    public int compareTo(T o)
-    {
-        CompRational tmp = (CompRational) o;
-        if(this.equals(tmp))
-        {
-            return 0;
-        }
-        if(this.getN() * tmp.getD() > tmp.getN() * this.getD())
-        {
-            return 1;
-        }
-        else
-        {
-            return -1;
-        }
+    public int compareTo(CompRational tmp) {
+
+        double compareResult = getN()/(double)getD() - tmp.getN()/(double)tmp.getD();
+        if (compareResult>0) return 1;
+        else if (compareResult<0) return -1;
+        else return 0;
+
     }
 
     @Override
