@@ -104,6 +104,12 @@ public class Rational extends BasisFraction {
      */
     @Override
     public boolean equals(Object obj) {
-        return hashCode()==obj.hashCode();
+
+        if (this == obj) return true;
+        else if (obj == null) return false;
+
+        Rational o = (Rational) obj;
+        return (this.N == o.N && this.D == o.D);
+
     }
 }

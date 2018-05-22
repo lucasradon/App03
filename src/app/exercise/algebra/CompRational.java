@@ -11,7 +11,7 @@ public class CompRational extends Rational implements Comparable<CompRational>{
 
     /**
      * Methode zum überprüfen ob 2 CompRational-Objekte die gleichen Werte haben
-     * Wenn größer 1, kleiner -1, gleich 0
+     * Wenn das übergebene Objekt größer -1, kleiner 1, gleich 0
      * @param tmp Object
      * @return int
      */

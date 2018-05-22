@@ -10,10 +10,12 @@ public class BSTree<E> extends AbstractCollection<E> implements Iterable<E> {
 
     private Node<E> root;
 
-    public BSTree(Node<E> root) {
-        this.root=root;
-    }
-
+    /**
+     * Add-Methode zum Hinzufügen eines neuen Knotens
+     *
+     * @param element
+     * @return
+     */
     @Override
     public boolean add(E element) {
         return insert(root, element);
@@ -21,20 +23,25 @@ public class BSTree<E> extends AbstractCollection<E> implements Iterable<E> {
 
     private boolean insert(Node<E> node, E element) {
 
+        if (root == null) {
+            root = new Node<>(element, null);
+            return true;
+        }
+        //wenn der Wert des Knotens kleiner ist als der Wert des elements & der rechte Knoten ist frei lege einen Neuen Knoten mit dem Wert von element an
         CompRational nodeValue = (CompRational) node.getValue();
         int result = nodeValue.compareTo((CompRational) element);
-        if (result < 0){
-            if (node.getRight() == null){
+        if (result < 0) {
+            if (node.getRight() == null) {
                 node.setRightNode(new Node<>(element, node));
             } else {
-                insert(node.getRightNode(),element);
+                insert(node.getRightNode(), element);
             }
             return true;
-        } else if (result > 0){
-            if (node.getLeft() == null){
+        } else if (result > 0) {
+            if (node.getLeft() == null) {
                 node.setLeftNode(new Node<>(element, node));
             } else {
-                insert(node.getLeftNode(),element);
+                insert(node.getLeftNode(), element);
             }
             return true;
         } else {
@@ -43,6 +50,12 @@ public class BSTree<E> extends AbstractCollection<E> implements Iterable<E> {
 
     }
 
+    /**
+     * Remove-Methode zum Löschen eines Knotens
+     *
+     * @param o Objekt
+     * @return boolean
+     */
     @Override
     public boolean remove(Object o) {
         return remove(root, (E) o);
@@ -77,38 +90,75 @@ public class BSTree<E> extends AbstractCollection<E> implements Iterable<E> {
     }
 
     @Override
-    public Iterator iterator() {
-        return null;
+    public Iterator<E> iterator() {
+        return new BSTreeIterator<>(this);
     }
 
     @Override
     public int size() {
-        return 0;
+
+        int size = 0;
+        Iterator<E> iterator = iterator();
+        while (iterator.hasNext()) {
+            iterator.next();
+            size++;
+        }
+        return size;
+
     }
 
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();
+        return root == null;
     }
 
     @Override
     public boolean contains(Object o) {
-        return super.contains(o);
+
+        Iterator<E> iterator = iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().equals(o)) {
+                return true;
+            }
+        }
+        return false;
+
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return super.containsAll(c);
+
+        for (Object o : c) {
+            if (!contains(o)) return false;
+        }
+        return true;
+
     }
 
     @Override
     public Object[] toArray() {
-        return super.toArray();
+
+        Object[] array = new Object[size()];
+        Iterator<E> iterator = iterator();
+        int i = 0;
+
+        while (iterator.hasNext()) {
+            array[i] = iterator.next();
+            i++;
+        }
+        return array;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        Iterator<E> iterator = iterator();
+        String s = "";
+
+        while (iterator.hasNext()) {
+            s += iterator.next()+", ";
+        }
+        return s.substring(0, s.length() - 2);
+
     }
 
     public Node<E> getRoot() {
