@@ -4,13 +4,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Klasse um Interatoren zu erzeugen
+ * @param <E>
+ */
 public class BSTreeIterator<E> implements Iterator<E> {
 
+    /**
+     * Objekt-Variablen
+     * tree, node, index, nodeList
+     */
     private BSTree<E> tree;
     private Node<E> node;
     private int index = 0;
     private List<Node<E>> nodeList;
 
+    /**
+     * Konstruktor für einen Iterator-Objekt
+     * @param BSTree tree
+     */
     public BSTreeIterator(BSTree<E> tree) {
 
         this.tree = tree;
@@ -18,12 +30,19 @@ public class BSTreeIterator<E> implements Iterator<E> {
 
     }
 
-
+    /**
+     * Methide um zu prüfen ob ein nächster Knoten existiert
+     * @return boolean
+     */
     @Override
     public boolean hasNext() {
         return index < nodeList.size();
     }
 
+    /**
+     * Springe zum nächsten Element
+     * @return E
+     */
     @Override
     public E next() {
 
@@ -33,6 +52,11 @@ public class BSTreeIterator<E> implements Iterator<E> {
 
     }
 
+    /**
+     * Methode um den Suchbaum durchzugehen
+     * @param Node node
+     * @return Liste von Knotenelementen
+     */
     private List<Node<E>> getInorderedList(Node<E> node){
 
         List<Node<E>> list = new ArrayList<>();

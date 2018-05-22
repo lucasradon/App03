@@ -1,5 +1,9 @@
 package app.exercise.visualtree;
 
+/**
+ * Interface um grafische Elemte zu zeigen
+ * @param <T>
+ */
 public interface DrawableTreeElement <T> {
 
     DrawableTreeElement<T> getLeft();
